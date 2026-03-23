@@ -174,8 +174,7 @@ export default function LandingPage() {
                 Everything you need to run your inventory
               </h2>
               <p className="text-slate-500 text-base max-w-xl mx-auto">
-                Built for small and growing businesses that need reliable,
-                real-time inventory control.
+                Built for businesses of every size from startups to established enterprises that demand reliable, real-time inventory control.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
