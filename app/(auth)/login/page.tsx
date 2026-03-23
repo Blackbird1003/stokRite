@@ -91,7 +91,7 @@ export default function LoginPage() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="admin@stockflow.com"
+            placeholder="otakustore@gmail.com"
             autoComplete="email"
             className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:border-indigo-500"
           />
@@ -138,26 +138,6 @@ export default function LoginPage() {
         </Button>
       </form>
 
-      {/* Quick-fill demo credentials */}
-      <div className="mt-4 p-3 bg-indigo-500/10 border border-indigo-500/20 rounded-lg">
-        <p className="text-xs text-indigo-300 font-medium mb-1.5">Demo Credentials (click to fill):</p>
-        <div className="space-y-1">
-          <button
-            type="button"
-            onClick={() => { setEmail("admin@stockflow.com"); setPassword("Admin123!"); setError(""); }}
-            className="w-full text-left text-xs text-slate-400 hover:text-indigo-300 transition-colors py-0.5"
-          >
-            🔑 Admin: admin@stockflow.com / Admin123!
-          </button>
-          <button
-            type="button"
-            onClick={() => { setEmail("staff@stockflow.com"); setPassword("Staff123!"); setError(""); }}
-            className="w-full text-left text-xs text-slate-400 hover:text-indigo-300 transition-colors py-0.5"
-          >
-            👤 Staff: staff@stockflow.com / Staff123!
-          </button>
-        </div>
-      </div>
 
       <p className="text-center text-sm text-slate-400 mt-6">
         No account?{" "}
