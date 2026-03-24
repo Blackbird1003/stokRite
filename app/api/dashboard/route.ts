@@ -29,7 +29,7 @@ export async function GET() {
     const reorderCost = products
       .filter((p) => p.quantity <= p.minimumStock)
       .reduce((sum, p) => sum + p.costPrice * Math.max(0, p.minimumStock - p.quantity + 10), 0);
-    const stockHealthScore = totalProducts > 0 ? Math.round((inStock / totalProducts) * 100) : 100;
+    const stockHealthScore = totalProducts > 0 ? Math.round((inStock / totalProducts) * 100) : 0;
 
     const totalSalesValue = sales30d.reduce((s, sale) => s + sale.priceAtSale * sale.quantity, 0);
     const totalUnitsSold = sales30d.reduce((s, sale) => s + sale.quantity, 0);

@@ -160,19 +160,15 @@ export function ProductModal({
     if (!uploadFile) return form.imageUrl || null;
     setUploading(true);
     try {
-      const formData = new FormData();
-      formData.append("file", uploadFile);
-      const res = await fetch("/api/upload", { method: "POST", body: formData });
-      if (!res.ok) {
-        const data = await res.json();
-        setErrors((prev) => ({ ...prev, imageUrl: data.error || "Upload failed." }));
-        return null;
-      }
-      const data = await res.json();
-      return data.url as string;
-    } catch {
-      setErrors((prev) => ({ ...prev, imageUrl: "Upload failed. Please try again." }));
-      return null;
+      return await new Promise<string | null>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = () => {
+          setErrors((prev) => ({ ...prev, imageUrl: "Upload failed. Please try again." }));
+          resolve(null);
+        };
+        reader.readAsDataURL(uploadFile);
+      });
     } finally {
       setUploading(false);
     }
