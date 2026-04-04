@@ -63,7 +63,7 @@ export default function LoginPage() {
           </svg>
           <div>
             <div className="text-xl font-bold text-white leading-none">
-              stock<span className="text-indigo-300">Flow</span>
+              Stok<span className="text-indigo-300">rite</span>
             </div>
             <div className="text-[10px] text-indigo-400 tracking-widest uppercase mt-0.5">
               Inventory
