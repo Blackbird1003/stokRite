@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react";
 import { Menu } from "lucide-react";
 import { NotificationsDropdown } from "./notifications/notifications-dropdown";
+import Link from "next/link";
 
 interface TopbarProps {
   title: string;
@@ -37,12 +38,22 @@ export function Topbar({ title, description }: TopbarProps) {
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <NotificationsDropdown />
 
-          <div className="hidden sm:flex items-center gap-2 text-sm text-slate-600">
-            <span>Hello,</span>
-            <span className="font-semibold text-slate-800">
-              {session?.user?.name?.split(" ")[0]}
-            </span>
-          </div>
+          <Link href="/settings" className="hidden sm:flex items-center gap-2 group">
+            <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-xs font-bold overflow-hidden shrink-0 ring-2 ring-transparent group-hover:ring-indigo-300 transition-all">
+              {session?.user?.avatarUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={session.user.avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
+              ) : (
+                (session?.user?.name || "U").split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2)
+              )}
+            </div>
+            <div className="text-sm leading-tight">
+              <p className="text-slate-400 text-xs">Hello,</p>
+              <p className="font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
+                {session?.user?.name?.split(" ")[0]}
+              </p>
+            </div>
+          </Link>
         </div>
       </div>
     </header>

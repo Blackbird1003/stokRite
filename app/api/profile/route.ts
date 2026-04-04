@@ -17,7 +17,7 @@ export async function PATCH(req: Request) {
         return NextResponse.json({ error: "Name cannot be empty." }, { status: 400 });
       }
       await prisma.user.update({
-        where: { id: session.user.id },
+        where: { id: session.user.actualUserId },
         data: { name: body.name.trim() },
       });
       return NextResponse.json({ success: true });
@@ -26,7 +26,7 @@ export async function PATCH(req: Request) {
     // Update avatar URL
     if (body.avatarUrl !== undefined) {
       await prisma.user.update({
-        where: { id: session.user.id },
+        where: { id: session.user.actualUserId },
         data: { avatarUrl: body.avatarUrl || null },
       });
       return NextResponse.json({ success: true });
@@ -38,7 +38,7 @@ export async function PATCH(req: Request) {
         return NextResponse.json({ error: "New password must be at least 8 characters." }, { status: 400 });
       }
       const user = await prisma.user.findUnique({ where: { id: session.user.id } });
-      if (!user) return NextResponse.json({ error: "User not found." }, { status: 404 });
+      if (!user || !user.password) return NextResponse.json({ error: "User not found." }, { status: 404 });
 
       const isValid = await bcrypt.compare(body.currentPassword, user.password);
       if (!isValid) {
@@ -47,7 +47,7 @@ export async function PATCH(req: Request) {
 
       const hashed = await bcrypt.hash(body.newPassword, 10);
       await prisma.user.update({
-        where: { id: session.user.id },
+        where: { id: session.user.actualUserId },
         data: { password: hashed },
       });
       return NextResponse.json({ success: true });

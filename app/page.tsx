@@ -12,7 +12,7 @@ import {
 import { ContactButton } from "@/components/contact-button";
 
 // Inline the dashboard SVG logo so it's identical to the sidebar
-function StockFlowLogo({ size = 32 }: { size?: number }) {
+function StokriteLogo({ size = 32 }: { size?: number }) {
   return (
     <svg
       width={size}
@@ -105,10 +105,10 @@ export default function LandingPage() {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <StockFlowLogo size={32} />
+            <StokriteLogo size={32} />
             <div className="flex flex-col leading-none">
               <span className="text-[15px] font-bold tracking-tight text-slate-900">
-                stock<span className="text-indigo-500">Flow</span>
+                Stok<span className="text-indigo-500">rite</span>
               </span>
               <span className="text-[9px] text-slate-400 tracking-widest uppercase font-medium">
                 Inventory
@@ -138,7 +138,7 @@ export default function LandingPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm font-medium px-4 py-1.5 rounded-full mb-8">
               <CheckCircle className="w-3.5 h-3.5" />
-              Currently free to use
+              Free to use
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
               Smart Inventory Management
@@ -146,7 +146,7 @@ export default function LandingPage() {
               <span className="text-indigo-600">Modern Businesses</span>
             </h1>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10">
-              StockFlow helps you track stock, manage multiple locations, monitor
+              Stokrite helps you track stock, manage multiple locations, monitor
               sales and get AI-powered insights. All in one clean dashboard.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -201,7 +201,7 @@ export default function LandingPage() {
               Ready to take control of your inventory?
             </h2>
             <p className="text-indigo-200 mb-8">
-              Join businesses already using StockFlow to manage their stock smarter.
+              Join businesses already using Stokrite to manage their stock smarter.
             </p>
             <Link
               href="/register"
@@ -220,10 +220,10 @@ export default function LandingPage() {
             {/* Brand */}
             <div className="lg:col-span-2">
               <div className="flex items-center gap-2.5 mb-3">
-                <StockFlowLogo size={28} />
+                <StokriteLogo size={28} />
                 <div className="flex flex-col leading-none">
                   <span className="text-[14px] font-bold tracking-tight text-white">
-                    stock<span className="text-indigo-400">Flow</span>
+                    Stok<span className="text-indigo-400">rite</span>
                   </span>
                   <span className="text-[9px] text-slate-500 tracking-widest uppercase font-medium">
                     Inventory
@@ -235,7 +235,7 @@ export default function LandingPage() {
                 scales with you.
               </p>
               <span className="inline-flex items-center gap-1.5 text-xs bg-emerald-900/40 text-emerald-400 border border-emerald-800 px-2.5 py-1 rounded-full">
-                <CheckCircle className="w-3 h-3" /> Currently free to use
+                <CheckCircle className="w-3 h-3" /> Free to use
               </span>
             </div>
 
@@ -266,7 +266,7 @@ export default function LandingPage() {
               <ul className="space-y-2.5 text-sm">
                 <li>
                   <ContactButton
-                    subject="StockFlow Help Request"
+                    subject="Stokrite Help Request"
                     className="hover:text-white transition-colors text-sm text-left"
                   >
                     Help
@@ -291,7 +291,7 @@ export default function LandingPage() {
 
           <div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm">
-              © {new Date().getFullYear()} StockFlow. All rights reserved.
+              © {new Date().getFullYear()} Stokrite. All rights reserved.
             </p>
             <a
               href="https://instagram.com/otakustore_ng"

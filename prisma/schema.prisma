@@ -17,10 +17,15 @@ model User {
   id            String         @id @default(cuid())
   name          String
   email         String         @unique
-  password      String
+  password      String?
   role          Role           @default(STAFF)
   avatarUrl     String?
   createdAt     DateTime       @default(now())
+  ownerId       String?
+  inviteToken   String?        @unique
+  inviteExpiry  DateTime?
+  owner         User?          @relation("StaffOwner", fields: [ownerId], references: [id])
+  staffMembers  User[]         @relation("StaffOwner")
   categories    Category[]
   products      Product[]
   reports       Report[]

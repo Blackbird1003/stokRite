@@ -20,7 +20,7 @@ export default async function DashboardLayout({
           {children}
         </main>
         <footer className="shrink-0 border-t border-slate-200 bg-white px-6 py-2.5 flex items-center justify-between text-xs text-slate-400">
-          <span>© {new Date().getFullYear()} StockFlow. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Stokrite. All rights reserved.</span>
           <div className="flex items-center gap-4">
             <a href="/privacy" className="hover:text-slate-600 transition-colors">Privacy Policy</a>
             <a href="/terms" className="hover:text-slate-600 transition-colors">Terms of Service</a>

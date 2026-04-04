@@ -1,5 +1,5 @@
 {
-  "name": "stockflow",
+  "name": "stokrite",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -33,6 +33,7 @@
     "react-dom": "19.2.3",
     "react-hook-form": "^7.71.2",
     "recharts": "^3.7.0",
+    "resend": "^6.10.0",
     "tailwind-merge": "^3.5.0",
     "ts-node": "^10.9.2",
     "zod": "^4.3.6"

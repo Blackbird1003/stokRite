@@ -6,7 +6,7 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "stockFlow — Inventory Management",
+  title: "Stokrite — Inventory Management",
   description: "Modern inventory management system for businesses",
 };
 

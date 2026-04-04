@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function StockFlowLogo({ size = 32 }: { size?: number }) {
+function StokriteLogo({ size = 32 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
       <rect width="36" height="36" rx="10" fill="url(#privacyLogoGrad)" />
@@ -23,9 +23,9 @@ export default function PrivacyPage() {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <StockFlowLogo size={32} />
+            <StokriteLogo size={32} />
             <div className="flex flex-col leading-none">
-              <span className="text-[15px] font-bold tracking-tight text-slate-900">stock<span className="text-indigo-500">Flow</span></span>
+              <span className="text-[15px] font-bold tracking-tight text-slate-900">Stok<span className="text-indigo-500">rite</span></span>
               <span className="text-[9px] text-slate-400 tracking-widest uppercase font-medium">Inventory</span>
             </div>
           </Link>
@@ -46,9 +46,9 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-lg font-semibold text-slate-800 mb-3">1. Introduction</h2>
               <p>
-                StockFlow (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your personal information. This Privacy Policy
+                Stokrite (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your personal information. This Privacy Policy
                 explains what data we collect, how we use it, and the choices you have regarding your data when you
-                use the StockFlow platform at stockflow.app and related services.
+                use the Stokrite platform at stokrite.app and related services.
               </p>
               <p className="mt-3">
                 By creating an account or using our platform, you agree to the collection and use of information
@@ -84,7 +84,7 @@ export default function PrivacyPage() {
               <h2 className="text-lg font-semibold text-slate-800 mb-3">3. How We Use Your Information</h2>
               <p>We use the information we collect to:</p>
               <ul className="list-disc pl-5 space-y-1 mt-2">
-                <li>Provide, operate, and maintain the StockFlow service</li>
+                <li>Provide, operate, and maintain the Stokrite service</li>
                 <li>Authenticate your identity and secure your account</li>
                 <li>Generate inventory insights, reports, and analytics for your business</li>
                 <li>Power the Blackbird AI assistant with your live inventory data (processed per-request, not stored)</li>
@@ -99,7 +99,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-slate-800 mb-3">4. Third-Party Services</h2>
-              <p>StockFlow uses the following third-party services to operate:</p>
+              <p>Stokrite uses the following third-party services to operate:</p>
               <ul className="list-disc pl-5 space-y-2 mt-2">
                 <li>
                   <span className="font-medium text-slate-700">PostgreSQL Database</span> — Your inventory data is stored
@@ -164,7 +164,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-lg font-semibold text-slate-800 mb-3">8. Cookies</h2>
               <p>
-                StockFlow uses session cookies to keep you logged in securely. These are essential cookies
+                Stokrite uses session cookies to keep you logged in securely. These are essential cookies
                 required for the service to function. We do not use advertising or tracking cookies.
               </p>
             </section>
@@ -172,7 +172,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-lg font-semibold text-slate-800 mb-3">9. Children&apos;s Privacy</h2>
               <p>
-                StockFlow is not intended for users under the age of 13. We do not knowingly collect personal
+                Stokrite is not intended for users under the age of 13. We do not knowingly collect personal
                 information from children. If you believe a child has provided us with their information,
                 please contact us and we will delete it promptly.
               </p>
@@ -207,15 +207,15 @@ export default function PrivacyPage() {
       <footer className="bg-slate-900 text-slate-400 py-10 px-6 mt-10">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <StockFlowLogo size={24} />
-            <span className="text-sm font-semibold text-white">StockFlow</span>
+            <StokriteLogo size={24} />
+            <span className="text-sm font-semibold text-white">Stokrite</span>
           </div>
           <div className="flex items-center gap-6 text-sm">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <Link href="/about" className="hover:text-white transition-colors">About</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>
-          <p className="text-xs">© {new Date().getFullYear()} StockFlow. All rights reserved.</p>
+          <p className="text-xs">© {new Date().getFullYear()} Stokrite. All rights reserved.</p>
         </div>
       </footer>
     </div>

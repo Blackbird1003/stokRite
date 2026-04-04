@@ -31,6 +31,10 @@ export const authOptions: NextAuthOptions = {
           throw new Error("No user found with this email");
         }
 
+        if (!user.password) {
+          throw new Error("Account not activated. Please check your invite email.");
+        }
+
         const isValidPassword = await bcrypt.compare(
           credentials.password,
           user.password
@@ -46,6 +50,7 @@ export const authOptions: NextAuthOptions = {
           email: user.email,
           role: user.role as string,
           avatarUrl: user.avatarUrl ?? undefined,
+          ownerId: user.ownerId ?? null,
         };
       },
     }),
@@ -56,6 +61,7 @@ export const authOptions: NextAuthOptions = {
         token.id = user.id;
         token.role = (user as { role?: string }).role ?? "STAFF";
         token.avatarUrl = (user as { avatarUrl?: string }).avatarUrl ?? null;
+        token.ownerId = (user as { ownerId?: string | null }).ownerId ?? null;
       }
       // Allow client-side session updates (name, avatarUrl)
       if (trigger === "update" && session) {
@@ -66,7 +72,10 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token && session.user) {
-        session.user.id = (token.id as string) ?? "";
+        // actualUserId is always the real logged-in user (used for profile updates)
+        session.user.actualUserId = token.id as string;
+        // id is the data owner — admin's ID for staff, own ID for admin
+        session.user.id = (token.ownerId as string | null) ?? (token.id as string);
         session.user.role = (token.role as string) ?? "STAFF";
         session.user.avatarUrl = (token.avatarUrl as string | null) ?? null;
       }

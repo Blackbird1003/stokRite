@@ -8,6 +8,7 @@ import {
   LayoutDashboard,
   Package,
   BarChart3,
+  ShoppingCart,
   LogOut,
   ChevronLeft,
   ChevronRight,
@@ -31,6 +32,7 @@ import { Badge } from "./ui/badge";
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/inventory", label: "Inventory", icon: Package },
+  { href: "/sales", label: "Sales", icon: ShoppingCart },
   { href: "/reports", label: "Reports", icon: BarChart3, adminOnly: true },
   { href: "/settings", label: "Settings", icon: Settings },
 ];

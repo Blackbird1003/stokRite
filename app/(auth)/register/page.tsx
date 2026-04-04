@@ -108,14 +108,14 @@ export default function RegisterPage() {
             </defs>
           </svg>
           <div>
-            <span className="text-lg font-bold text-white">stock<span className="text-indigo-300">Flow</span></span>
+            <span className="text-lg font-bold text-white">Stok<span className="text-indigo-300">rite</span></span>
           </div>
         </div>
       </div>
 
       <div className="text-center mb-5">
         <h1 className="text-xl font-bold text-white">Create Account</h1>
-        <p className="text-sm text-slate-400 mt-1">Join stockFlow today</p>
+        <p className="text-sm text-slate-400 mt-1">Join Stokrite today</p>
       </div>
 
       {error && (

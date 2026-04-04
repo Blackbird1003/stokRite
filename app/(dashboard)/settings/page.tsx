@@ -1,13 +1,21 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { Topbar } from "@/components/topbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, User, Lock, ShieldCheck, Check, Camera, LogOut } from "lucide-react";
+import { Loader2, User, Lock, ShieldCheck, Check, Camera, LogOut, Users, Trash2, UserPlus } from "lucide-react";
+
+interface StaffMember {
+  id: string;
+  name: string;
+  email: string;
+  createdAt: string;
+  activated: boolean;
+}
 
 export default function SettingsPage() {
   const { data: session, update } = useSession();
@@ -30,6 +38,74 @@ export default function SettingsPage() {
   const [nameLoading, setNameLoading] = useState(false);
   const [nameSuccess, setNameSuccess] = useState(false);
   const [nameError, setNameError] = useState("");
+
+  // Staff management
+  const [staff, setStaff] = useState<StaffMember[]>([]);
+  const [staffLoading, setStaffLoading] = useState(false);
+  const [showAddStaff, setShowAddStaff] = useState(false);
+  const [staffName, setStaffName] = useState("");
+  const [staffEmail, setStaffEmail] = useState("");
+  const [staffError, setStaffError] = useState("");
+  const [staffSuccess, setStaffSuccess] = useState("");
+  const [addingStaff, setAddingStaff] = useState(false);
+  const [removingId, setRemovingId] = useState<string | null>(null);
+
+  const fetchStaff = useCallback(async () => {
+    if (!isAdmin) return;
+    setStaffLoading(true);
+    try {
+      const res = await fetch("/api/staff");
+      const data = await res.json();
+      if (res.ok) setStaff(data.staff);
+    } finally {
+      setStaffLoading(false);
+    }
+  }, [isAdmin]);
+
+  useEffect(() => { fetchStaff(); }, [fetchStaff]);
+
+  const handleAddStaff = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStaffError("");
+    setStaffSuccess("");
+    if (!staffName.trim() || !staffEmail.trim()) {
+      setStaffError("Name and email are required.");
+      return;
+    }
+    setAddingStaff(true);
+    try {
+      const res = await fetch("/api/staff", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: staffName, email: staffEmail }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setStaffError(data.error || "Failed to send invite."); return; }
+      setStaffSuccess(`Invite sent to ${staffEmail}.`);
+      setStaffName(""); setStaffEmail("");
+      setShowAddStaff(false);
+      fetchStaff();
+      setTimeout(() => setStaffSuccess(""), 4000);
+    } catch {
+      setStaffError("An error occurred.");
+    } finally {
+      setAddingStaff(false);
+    }
+  };
+
+  const handleRemoveStaff = async (staffId: string) => {
+    setRemovingId(staffId);
+    try {
+      await fetch("/api/staff", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ staffId }),
+      });
+      fetchStaff();
+    } finally {
+      setRemovingId(null);
+    }
+  };
 
   // Password
   const [currentPassword, setCurrentPassword] = useState("");
@@ -267,6 +343,94 @@ export default function SettingsPage() {
             </Button>
           </form>
         </section>
+
+        {/* Staff Management — admin only */}
+        {isAdmin && (
+          <section className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+            <div className="px-5 py-3.5 border-b border-slate-100 bg-slate-50 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Users className="w-4 h-4 text-indigo-500" />
+                <h2 className="text-sm font-semibold text-slate-700">Staff Management</h2>
+              </div>
+              <Button
+                size="sm"
+                className="bg-indigo-600 hover:bg-indigo-500 h-8 text-xs gap-1.5"
+                onClick={() => { setShowAddStaff((v) => !v); setStaffError(""); }}
+              >
+                <UserPlus className="w-3.5 h-3.5" />
+                Add Staff
+              </Button>
+            </div>
+
+            <div className="p-5 space-y-4">
+              {staffSuccess && (
+                <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-600 text-sm flex items-center gap-2">
+                  <Check className="w-4 h-4" /> {staffSuccess}
+                </div>
+              )}
+
+              {showAddStaff && (
+                <form onSubmit={handleAddStaff} className="p-4 border border-indigo-200 bg-indigo-50/50 rounded-lg space-y-3">
+                  <p className="text-sm font-medium text-slate-700">Invite Staff Member</p>
+                  <p className="text-xs text-slate-400">An invite link will be sent to their email to set up their password.</p>
+                  {staffError && (
+                    <div className="p-2 bg-red-50 border border-red-200 rounded text-red-600 text-xs">{staffError}</div>
+                  )}
+                  <div className="space-y-1">
+                    <Label className="text-xs">Full Name</Label>
+                    <Input value={staffName} onChange={(e) => setStaffName(e.target.value)} placeholder="e.g. Amara Okafor" />
+                  </div>
+                  <div className="space-y-1">
+                    <Label className="text-xs">Email Address</Label>
+                    <Input type="email" value={staffEmail} onChange={(e) => setStaffEmail(e.target.value)} placeholder="staff@example.com" />
+                  </div>
+                  <div className="flex gap-2">
+                    <Button type="submit" size="sm" className="bg-indigo-600 hover:bg-indigo-500" disabled={addingStaff}>
+                      {addingStaff ? <><Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" /> Sending...</> : "Send Invite"}
+                    </Button>
+                    <Button type="button" size="sm" variant="outline" onClick={() => { setShowAddStaff(false); setStaffError(""); }}>
+                      Cancel
+                    </Button>
+                  </div>
+                </form>
+              )}
+
+              {staffLoading ? (
+                <div className="flex items-center justify-center py-6">
+                  <Loader2 className="w-5 h-5 animate-spin text-slate-400" />
+                </div>
+              ) : staff.length === 0 ? (
+                <p className="text-sm text-slate-400 text-center py-4">No staff members yet. Add one above.</p>
+              ) : (
+                <div className="space-y-2">
+                  {staff.map((member) => (
+                    <div key={member.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100">
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="text-sm font-medium text-slate-800 truncate">{member.name}</p>
+                          {!member.activated && (
+                            <span className="text-xs px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 border border-amber-200 shrink-0">
+                              Invite Pending
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs text-slate-400 truncate">{member.email}</p>
+                      </div>
+                      <button
+                        onClick={() => handleRemoveStaff(member.id)}
+                        disabled={removingId === member.id}
+                        className="ml-3 p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors disabled:opacity-50 shrink-0"
+                        title="Remove staff member"
+                      >
+                        {removingId === member.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Trash2 className="w-4 h-4" />}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* Account section */}
         <section className="bg-white border border-slate-200 rounded-xl overflow-hidden">

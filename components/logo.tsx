@@ -52,7 +52,7 @@ export function Logo({ collapsed = false, className }: LogoProps) {
       {!collapsed && (
         <div className="flex flex-col leading-none">
           <span className="text-[15px] font-bold tracking-tight text-white">
-            stock<span className="text-indigo-300">Flow</span>
+            Stok<span className="text-indigo-300">rite</span>
           </span>
           <span className="text-[9px] text-indigo-400 tracking-widest uppercase font-medium">
             Inventory

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle, Package, Target, Users, Zap } from "lucide-react";
 import { ContactButton } from "@/components/contact-button";
 
-function StockFlowLogo({ size = 32 }: { size?: number }) {
+function StokriteLogo({ size = 32 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
       <rect width="36" height="36" rx="10" fill="url(#aboutLogoGrad)" />
@@ -19,9 +19,9 @@ function StockFlowLogo({ size = 32 }: { size?: number }) {
 }
 
 const values = [
-  { icon: Target, title: "Built with Purpose", description: "StockFlow was built to solve a real problem: helping business owners spend less time counting and more time growing." },
-  { icon: Users, title: "Made for Real Businesses", description: "Whether you run a small shop or manage multiple warehouses, StockFlow adapts to how your business actually works." },
-  { icon: Zap, title: "Simple by Design", description: "We believe powerful tools don't have to be complicated. Every feature in StockFlow is designed to be intuitive and fast." },
+  { icon: Target, title: "Built with Purpose", description: "Stokrite was built to solve a real problem: helping business owners spend less time counting and more time growing." },
+  { icon: Users, title: "Made for Real Businesses", description: "Whether you run a small shop or manage multiple warehouses, Stokrite adapts to how your business actually works." },
+  { icon: Zap, title: "Simple by Design", description: "We believe powerful tools don't have to be complicated. Every feature in Stokrite is designed to be intuitive and fast." },
   { icon: Package, title: "Always Improving", description: "We listen to our users and continuously ship improvements. Your feedback shapes every update we release." },
 ];
 
@@ -32,9 +32,9 @@ export default function AboutPage() {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <StockFlowLogo size={32} />
+            <StokriteLogo size={32} />
             <div className="flex flex-col leading-none">
-              <span className="text-[15px] font-bold tracking-tight text-slate-900">stock<span className="text-indigo-500">Flow</span></span>
+              <span className="text-[15px] font-bold tracking-tight text-slate-900">Stok<span className="text-indigo-500">rite</span></span>
               <span className="text-[9px] text-slate-400 tracking-widest uppercase font-medium">Inventory</span>
             </div>
           </Link>
@@ -49,9 +49,9 @@ export default function AboutPage() {
         {/* Hero */}
         <section className="py-20 px-6 bg-gradient-to-b from-slate-50 to-white">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6">About StockFlow</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6">About Stokrite</h1>
             <p className="text-lg text-slate-500 leading-relaxed">
-              StockFlow is a modern inventory management platform built for small and growing businesses.
+              Stokrite is a modern inventory management platform built for small and growing businesses.
               We make it simple to track your stock, manage multiple locations, record sales, and get
               real-time insights, all without needing an accounting degree or a big team.
             </p>
@@ -92,7 +92,7 @@ export default function AboutPage() {
         {/* Key Features highlight */}
         <section className="py-16 px-6 bg-white">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">What StockFlow Gives You</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">What Stokrite Gives You</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 "Real-time inventory tracking across all products",
@@ -131,15 +131,15 @@ export default function AboutPage() {
       <footer className="bg-slate-900 text-slate-400 py-10 px-6">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <StockFlowLogo size={24} />
-            <span className="text-sm font-semibold text-white">StockFlow</span>
+            <StokriteLogo size={24} />
+            <span className="text-sm font-semibold text-white">Stokrite</span>
           </div>
           <div className="flex items-center gap-6 text-sm">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>
-          <p className="text-xs">© {new Date().getFullYear()} StockFlow. All rights reserved.</p>
+          <p className="text-xs">© {new Date().getFullYear()} Stokrite. All rights reserved.</p>
         </div>
       </footer>
     </div>

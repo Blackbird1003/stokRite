@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function StockFlowLogo({ size = 32 }: { size?: number }) {
+function StokriteLogo({ size = 32 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
       <rect width="36" height="36" rx="10" fill="url(#termsLogoGrad)" />
@@ -23,9 +23,9 @@ export default function TermsPage() {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <StockFlowLogo size={32} />
+            <StokriteLogo size={32} />
             <div className="flex flex-col leading-none">
-              <span className="text-[15px] font-bold tracking-tight text-slate-900">stock<span className="text-indigo-500">Flow</span></span>
+              <span className="text-[15px] font-bold tracking-tight text-slate-900">Stok<span className="text-indigo-500">rite</span></span>
               <span className="text-[9px] text-slate-400 tracking-widest uppercase font-medium">Inventory</span>
             </div>
           </Link>
@@ -46,7 +46,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-lg font-semibold text-slate-800 mb-3">1. Acceptance of Terms</h2>
               <p>
-                By accessing or using StockFlow (&quot;the Service&quot;), you agree to be bound by these Terms of Service.
+                By accessing or using Stokrite (&quot;the Service&quot;), you agree to be bound by these Terms of Service.
                 If you do not agree to these terms, you may not use the Service. These terms apply to all users,
                 including business owners, team members, and anyone who creates an account on the platform.
               </p>
@@ -55,7 +55,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-lg font-semibold text-slate-800 mb-3">2. Description of Service</h2>
               <p>
-                StockFlow is a cloud-based inventory management platform that provides tools for tracking products,
+                Stokrite is a cloud-based inventory management platform that provides tools for tracking products,
                 managing stock across multiple locations, recording sales, generating reports, and accessing
                 AI-powered business insights. The Service is provided &quot;as is&quot; and we reserve the right to
                 modify, update, or discontinue features at any time.
@@ -69,7 +69,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-lg font-semibold text-slate-800 mb-3">3. Account Registration</h2>
               <p>
-                To use StockFlow, you must create an account with a valid email address and password. You are
+                To use Stokrite, you must create an account with a valid email address and password. You are
                 responsible for:
               </p>
               <ul className="list-disc pl-5 space-y-1 mt-2">
@@ -86,7 +86,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-slate-800 mb-3">4. Acceptable Use</h2>
-              <p>You agree to use StockFlow only for lawful business purposes. You must not:</p>
+              <p>You agree to use Stokrite only for lawful business purposes. You must not:</p>
               <ul className="list-disc pl-5 space-y-1 mt-2">
                 <li>Use the Service to store or manage data related to illegal goods or activities</li>
                 <li>Attempt to gain unauthorized access to other users&apos; accounts or data</li>
@@ -101,12 +101,12 @@ export default function TermsPage() {
             <section>
               <h2 className="text-lg font-semibold text-slate-800 mb-3">5. Your Data and Content</h2>
               <p>
-                You retain full ownership of all business data you enter into StockFlow — including products,
-                categories, sales records, and inventory information. By using the Service, you grant StockFlow
+                You retain full ownership of all business data you enter into Stokrite — including products,
+                categories, sales records, and inventory information. By using the Service, you grant Stokrite
                 a limited licence to process and store your data solely for the purpose of providing the Service to you.
               </p>
               <p className="mt-3">
-                You are responsible for the accuracy and legality of the data you input. StockFlow is not
+                You are responsible for the accuracy and legality of the data you input. Stokrite is not
                 liable for decisions made based on incorrect or incomplete data.
               </p>
             </section>
@@ -114,13 +114,13 @@ export default function TermsPage() {
             <section>
               <h2 className="text-lg font-semibold text-slate-800 mb-3">6. AI Features (Blackbird)</h2>
               <p>
-                StockFlow includes an AI business assistant called Blackbird, powered by Google&apos;s Gemini API.
+                Stokrite includes an AI business assistant called Blackbird, powered by Google&apos;s Gemini API.
                 When you use Blackbird, a snapshot of your inventory data and your question are sent to Google&apos;s
                 API to generate a response. AI-generated responses are for informational and advisory purposes only
                 and should not be treated as professional financial, legal, or business advice.
               </p>
               <p className="mt-3">
-                StockFlow does not guarantee the accuracy of AI responses. You are responsible for verifying
+                Stokrite does not guarantee the accuracy of AI responses. You are responsible for verifying
                 any AI-generated insights before acting on them.
               </p>
             </section>
@@ -128,8 +128,8 @@ export default function TermsPage() {
             <section>
               <h2 className="text-lg font-semibold text-slate-800 mb-3">7. Intellectual Property</h2>
               <p>
-                All elements of StockFlow — including the platform design, codebase, logo, branding, and
-                the Blackbird AI concept — are the intellectual property of StockFlow and its creators.
+                All elements of Stokrite — including the platform design, codebase, logo, branding, and
+                the Blackbird AI concept — are the intellectual property of Stokrite and its creators.
                 You may not copy, reproduce, or distribute any part of the platform without prior written permission.
               </p>
               <p className="mt-3">
@@ -140,7 +140,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-lg font-semibold text-slate-800 mb-3">8. Limitation of Liability</h2>
               <p>
-                To the fullest extent permitted by law, StockFlow and its creators shall not be liable for:
+                To the fullest extent permitted by law, Stokrite and its creators shall not be liable for:
               </p>
               <ul className="list-disc pl-5 space-y-1 mt-2">
                 <li>Any indirect, incidental, or consequential damages arising from your use of the Service</li>
@@ -172,7 +172,7 @@ export default function TermsPage() {
               <h2 className="text-lg font-semibold text-slate-800 mb-3">10. Changes to These Terms</h2>
               <p>
                 We may update these Terms of Service from time to time. Changes will be reflected by the
-                &quot;Last updated&quot; date at the top of this page. Continued use of StockFlow after changes
+                &quot;Last updated&quot; date at the top of this page. Continued use of Stokrite after changes
                 constitutes your acceptance of the updated terms.
               </p>
             </section>
@@ -198,15 +198,15 @@ export default function TermsPage() {
       <footer className="bg-slate-900 text-slate-400 py-10 px-6 mt-10">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <StockFlowLogo size={24} />
-            <span className="text-sm font-semibold text-white">StockFlow</span>
+            <StokriteLogo size={24} />
+            <span className="text-sm font-semibold text-white">Stokrite</span>
           </div>
           <div className="flex items-center gap-6 text-sm">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <Link href="/about" className="hover:text-white transition-colors">About</Link>
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
           </div>
-          <p className="text-xs">© {new Date().getFullYear()} StockFlow. All rights reserved.</p>
+          <p className="text-xs">© {new Date().getFullYear()} Stokrite. All rights reserved.</p>
         </div>
       </footer>
     </div>
