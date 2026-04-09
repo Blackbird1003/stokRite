@@ -102,7 +102,7 @@ export async function POST(req: Request) {
       select: { id: true, name: true, email: true, createdAt: true },
     });
 
-    const appUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXTAUTH_URL || "https://stok-rite.vercel.app";
     const inviteUrl = `${appUrl}/invite?token=${inviteToken}`;
     const adminName = session.user.name || "Your manager";
 
