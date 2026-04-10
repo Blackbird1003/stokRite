@@ -22,8 +22,10 @@ model User {
   avatarUrl     String?
   createdAt     DateTime       @default(now())
   ownerId       String?
-  inviteToken   String?        @unique
-  inviteExpiry  DateTime?
+  inviteToken        String?        @unique
+  inviteExpiry       DateTime?
+  resetToken         String?        @unique
+  resetTokenExpiry   DateTime?
   owner         User?          @relation("StaffOwner", fields: [ownerId], references: [id])
   staffMembers  User[]         @relation("StaffOwner")
   categories    Category[]

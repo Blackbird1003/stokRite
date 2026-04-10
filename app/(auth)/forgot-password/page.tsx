@@ -23,8 +23,11 @@ export default function ForgotPasswordPage() {
   });
 
   const onSubmit = async (data: FormData) => {
-    // Simulate sending email (real implementation would call an API)
-    await new Promise((r) => setTimeout(r, 1500));
+    await fetch("/api/auth/forgot-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: data.email }),
+    });
     setSent(true);
   };
 
