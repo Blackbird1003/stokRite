@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
       { protocol: "http", hostname: "**" },
     ],
   },
-  serverExternalPackages: ["bcryptjs"],
+  serverExternalPackages: ["bcryptjs", "bcrypt"],
   turbopack: {
     root: path.resolve(__dirname),
   },

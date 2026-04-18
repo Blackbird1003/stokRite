@@ -8,46 +8,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  ADMIN
-  STAFF
-}
-
 model User {
-  id            String         @id @default(cuid())
-  name          String
-  email         String         @unique
-  password      String?
-  role          Role           @default(STAFF)
-  avatarUrl     String?
-  createdAt     DateTime       @default(now())
-  ownerId       String?
-  inviteToken        String?        @unique
-  inviteExpiry       DateTime?
-  resetToken         String?        @unique
-  resetTokenExpiry   DateTime?
-  owner         User?          @relation("StaffOwner", fields: [ownerId], references: [id])
-  staffMembers  User[]         @relation("StaffOwner")
-  categories    Category[]
-  products      Product[]
-  reports       Report[]
-  inventoryLogs InventoryLog[]
-  locations     Location[]
-  notifications Notification[]
-  apiKeys       ApiKey[]
-  sales         Sale[]
+  id               String         @id @default(cuid())
+  name             String
+  email            String         @unique
+  password         String?
+  role             Role           @default(STAFF)
+  createdAt        DateTime       @default(now())
+  avatarUrl        String?
+  ownerId          String?
+  inviteExpiry     DateTime?
+  inviteToken      String?        @unique
+  resetToken       String?        @unique
+  resetTokenExpiry DateTime?
+  apiKeys          ApiKey[]
+  categories       Category[]
+  inventoryLogs    InventoryLog[]
+  locations        Location[]
+  notifications    Notification[]
+  products         Product[]
+  reports          Report[]
+  sales            Sale[]
+  owner            User?          @relation("StaffOwner", fields: [ownerId], references: [id])
+  staffMembers     User[]         @relation("StaffOwner")
 
   @@map("users")
 }
 
 model Category {
   id          String    @id @default(cuid())
-  userId      String
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   name        String
   description String?
-  products    Product[]
   createdAt   DateTime  @default(now())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  products    Product[]
 
   @@unique([name, userId])
   @@map("categories")
@@ -55,11 +50,8 @@ model Category {
 
 model Product {
   id           String            @id @default(cuid())
-  userId       String
-  user         User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   name         String
   categoryId   String
-  category     Category          @relation(fields: [categoryId], references: [id])
   sku          String
   price        Float
   costPrice    Float
@@ -68,8 +60,11 @@ model Product {
   description  String?
   imageUrl     String?
   createdAt    DateTime          @default(now())
+  userId       String
   logs         InventoryLog[]
   locations    ProductLocation[]
+  category     Category          @relation(fields: [categoryId], references: [id])
+  user         User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   sales        Sale[]
 
   @@unique([sku, userId])
@@ -78,28 +73,28 @@ model Product {
 
 model Report {
   id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   title       String
   description String?
   type        String
   data        Json?
   createdAt   DateTime @default(now())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("reports")
 }
 
 model InventoryLog {
   id             String   @id @default(cuid())
-  userId         String
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   productId      String
-  product        Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   action         String
   quantityChange Int
   previousQty    Int?
   newQty         Int?
   createdAt      DateTime @default(now())
+  userId         String
+  product        Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("inventory_logs")
 }
@@ -107,11 +102,11 @@ model InventoryLog {
 model Location {
   id          String            @id @default(cuid())
   userId      String
-  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   name        String
   description String?
-  products    ProductLocation[]
   createdAt   DateTime          @default(now())
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  products    ProductLocation[]
 
   @@unique([name, userId])
   @@map("locations")
@@ -120,10 +115,10 @@ model Location {
 model ProductLocation {
   id         String   @id @default(cuid())
   productId  String
-  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   locationId String
-  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
   quantity   Int      @default(0)
+  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@unique([productId, locationId])
   @@map("product_locations")
@@ -132,13 +127,13 @@ model ProductLocation {
 model Sale {
   id          String   @id @default(cuid())
   userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   productId   String
-  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   quantity    Int
   priceAtSale Float
   source      String   @default("manual")
   createdAt   DateTime @default(now())
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sales")
 }
@@ -146,13 +141,13 @@ model Sale {
 model Notification {
   id        String   @id @default(cuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   title     String
   message   String
   type      String
   read      Boolean  @default(false)
   productId String?
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("notifications")
 }
@@ -160,11 +155,16 @@ model Notification {
 model ApiKey {
   id        String   @id @default(cuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   name      String
   keyHash   String   @unique
   active    Boolean  @default(true)
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("api_keys")
+}
+
+enum Role {
+  ADMIN
+  STAFF
 }

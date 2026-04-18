@@ -27,18 +27,31 @@ export default function LoginPage() {
     }
 
     setLoading(true);
-    const result = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
-    setLoading(false);
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
 
-    if (result?.error) {
-      setError("Invalid email or password. Please try again.");
-    } else {
-      router.push("/dashboard");
-      router.refresh();
+      if (result?.error) {
+        setError("Invalid email or password. Please try again.");
+      } else {
+        router.push("/dashboard");
+        router.refresh();
+      }
+    } catch {
+      // Next.js 16 Turbopack drops the response body but the session cookie is set
+      const sessionRes = await fetch("/api/auth/session");
+      const session = await sessionRes.json();
+      if (session?.user) {
+        router.push("/dashboard");
+        router.refresh();
+      } else {
+        setError("Invalid email or password. Please try again.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
